@@ -1,0 +1,86 @@
+!-----------------------------------------------------------------------
+!  Module containing all the global variables of the code
+!-----------------------------------------------------------------------
+      module module_global
+      implicit none
+      
+! file names
+      character*30 dirIN      ! input directory
+      character*30 dirOUT     ! output directory
+      character*30 dirTMP     ! temporary directory
+      character*30 simname    ! name of the simulation
+      character*30 filesim    ! name of the file sim (into dirIN)
+      character*30 filexy     ! name of the file with the initial coordinates
+      character*100 filename  ! auxiliary file name
+      character*100 filetimeseries ! name of the CSV file with monthly Q, W, D, E_rate
+      
+! flow and sediment
+      integer flagbed         ! source for bed configuration (0:from Rp, 1:flat bed, 2:dune-covered) 
+      real*8 slope            ! Valley slope (needed for theta calculation, assumed constant)
+      real*8 delta_sg         ! Relative submerged density (rho_s/rho - 1)
+      real*8 base_Ef          ! Base floodplain erodibility factor (to scale E_rate)
+      real*8 E_scale          ! Scaling factor for E_rate -> Ef
+      real*8 factor_Eb        ! Scaling factor for Eb relative to Ef
+      real*8 factor_Eo        ! Scaling factor for Eo relative to Ef
+      real*8 physical_ds      ! Physical grain size [m] used for dynamic theta calculation
+      real*8 kinematic_viscosity ! Kinematic viscosity of water (m^2/s), used for dynamic Rp calculation
+      real*8 beta, beta0, betaold     ! aspect ratio B0/D0 (current, initial, previous)
+      real*8 theta, theta0, thetaold  ! Shield parameter (current, initial, previous)
+      real*8 ds, ds0, dsold           ! dimensionless grain size ds/D0 (current, initial, previous)
+      real*8 Rp                       ! Reynolds particle number Rp=(Delta g ds^3)^0.5/ni
+      real*8 rpic, rpic0              ! transverse transport parameter (Talmon)
+      integer jmodel          ! flag for flow field model (1:ZS, 2:IPS)
+      real*8 Cf, Cf0, Cfold   ! friction coefficient (current, initial, previous)
+      real*8 CD, CT           ! derivatives of friction coefficient
+      real*8 phi, phiD, phiT  ! sediment transport intensity and derivatives
+      real*8 F0               ! Froude number
+      
+! floodplain structure
+      real*8 Ef               ! erodibility coefficient of the floodplain
+      real*8 Eb               ! erodibility coefficient of the point bars
+      real*8 Eo               ! erodibility coefficient of the oxbow lakes
+      real*8 Ebound           ! erodibility coefficient of the valley boundaries
+      real*8 Lhalfvalley      ! transverse half-width of the usual floodplain
+      real*8 Ltransvalley     ! thickness of the transition layer
+      integer jbound          ! switch for valley boundaries
+      
+! river configuration
+      integer flagxy0         ! initial path configuration (1:random, 2:given)
+      integer flag_ox         ! flag for existing floodplain structure (0:no, 1:yes)) 
+      integer N, Nold, N0     ! number of points (current, previous, initial)
+      integer Nrand           ! number of points interested by a perturbation if flagxy0 = 1
+      integer jre             ! removed points before and after a cutoff
+      integer jnco            ! minimum threshold points for neck cutoff searching (>2)
+      integer jcco            ! minimum threshold points for chute cutoff searching
+      integer Ncco            ! counter for chute cutoffs
+      integer flag_cutoff     ! flag for cutoff detection (0:disabled, 1:enabled)
+      integer ksavgol         ! Savitzky–Golay flag: if <0 number of smoothings per iter, if >0 number of iters between smoothing, if 0 no smoothing
+      real*8 deltas, deltas0  ! grid size (current, initial)
+      real*8 dsmin, dsmax     ! extreme threshold for grid size (times deltas0)
+      real*8 tollc            ! minimum threshold before neck-cutoff
+      real*8 stdv             ! standard deviation of initial perturbation flagxy0 = 1
+     
+! simulation parameters
+      integer flag_time       ! final time assignment (1:time, 2:coefficient, 3:iteration number, 4:cutoff number, 5:printed conf number)
+      integer flag_dt         ! flag for time marching (1:fixed and equal to dt0, 2:dynamic <dt0)
+      integer ivideo          ! number of iterations between two video prints
+      integer ifile           ! number of iterations between two files prints
+      integer nend	          ! item number (iterations, cutoffs, printed confs)
+      real*8 TT, TTs          ! simulation time (dimensionless years) (initial)
+      real*8 kTTfco	          ! coefficient for time of first cutoff occurrence
+      real*8 tt0              ! starting time of simulation (dimensionless years)
+      real*8 dt0              ! fixed time step (dimensionless years)
+      real*8 cstab            ! stability coefficient for time marching
+
+! Time series data from CSV
+      integer n_timeseries              ! Number of records read from timeseries file
+      integer current_ts_index          ! Index for the current month in the timeseries arrays
+      real*8, allocatable :: ts_Q(:)    ! Monthly discharge
+      real*8, allocatable :: ts_W(:)    ! Monthly width
+      real*8, allocatable :: ts_D(:)    ! Monthly depth
+      real*8, allocatable :: ts_E_rate(:)! Monthly erosion rate (or factor)
+      real*8, allocatable :: ts_physical_ds(:)! Monthly physical grain size [m]
+
+!-----------------------------------------------------------------------
+      end module module_global
+!-----------------------------------------------------------------------

@@ -1,0 +1,56 @@
+- INTRO ----------------------------------------------------------------------------------------------------
+my_jingjiang                ! simulation name (maximum 20 letters)             
+- MORPHODYNAMICS -------------------------------------------------------------------------------------------
+72.0d0              ! beta      half width to depth ratio (B/D) - matches actual W/(2D)=880/(2*6.1)
+0.67d0              ! theta     Shield parameter (D*S/delta*dg) - matches actual data
+0.00004d0           ! ds        grain roughness (dg/D) - matches physical_ds/D=0.00025/6.1
+2                   ! flagbed   source for bed configuration (0:Van Rijn, 1:flat bed, 2:dune-covered)    
+125.5d0             ! Rp        particle Reynolds Rp=(Delta g ds^3)^0.5/ni
+0.5d0               ! rpic      transverse transport parameter (Talmon 1995)
+2                   ! jmodel    flow field model (1:ZS, 2:IPS)
+1000                ! Nz        number of points for the vertical flow integration in ZS model
+8                   ! Mdat      order of the Fourier expansion in ZS model (increased for high beta)
+- GEOMORPHOLOGY --------------------------------------------------------------------------------------------
+1.0d-8              ! Ef        erodibility of the floodplain - will be updated by timeseries
+5.0d-9              ! Eb        erodibility of the point bars - will be updated by timeseries
+1.0d-9              ! Eo        erodibility of the oxbow lakes - will be updated by timeseries
+0                   ! flag_ox   flag for existing structure of the floodplain (0:no, 1:yes)
+- RIVER CONFIGURATION --------------------------------------------------------------------------------------
+230                 ! N0        initial number of points
+2                   ! flagxy0   initial planform configuration (1:random, 2:given from filexy)
+jingjiang_centerline.xy     ! filexy    name of geometry file with dimensionless coordinates     
+1.0d0               ! deltas    resampling distance between axis points
+0.80d0              ! dsmin     minimum allowed value of grid size (times deltas)
+1.20d0              ! dsmax     maximum allowed value of grid size (times deltas)
+900                 ! Nrand     number of point interested by a slight perturbation if flagxy0 = 1
+0.01d0              ! stdv      standard deviation of initial perturbation if flagxy0 = 1
+2.2d0               ! tollc     minimum threshold before neck-cutoff
+6                   ! jre       removed points before and after a cutoff
+10                  ! jnco      minimum threshold points for neck cutoff searching (>2)
+0                   ! flag_cutoff  flag for cutoff detection (0:disabled, 1:enabled)
+5                   ! ksavgol   Savitzky-Golay flag: (<0 smooth iter; >0 smoothing interval; 0: no)
+- TIME STEP AND PRINTING -----------------------------------------------------------------------------------
+1                   ! flag_time final time (1:time, 2:coeff, 3:iterations, 4:cutoffs 5:printed confs)
+9.0                 ! TTs       simulation time = 2016-2024 (9 years)
+25.0                ! kTTfco    coefficient for first cutoff time if flag_time = 2
+5000                ! nend      item number if flag_time >= 3 (iterations, cutoffs, printed confs)
+0.d0                ! tt0       starting time (dimensionless years)
+1                   ! flag_dt   flag for time marching (1:fixed and equal to dt0, 2:dynamic <dt0)
+0.083333333333d0    ! dt0       maximum time step (dimensionless years)
+0.05d0              ! cstab     coefficient for time marching
+100                 ! ivideo    iterations between two screen prints
+1                   ! ifile     iterations between two file prints
+- VALLEY BOUNDARIES ----------------------------------------------------------------------------------------
+0                   ! transition shape (0: no boundary, 1:sharp,2:spline,3:exp-decaying,4:exp-reversed)
+1.0d-9              ! erodibility coefficient of the valley boundaries
+10000.d0            ! transverse half-width of the usual floodplain
+50.d0               ! thickness of the transition layer  
+- TIMESERIES PARAMETERS (for monthly data-driven simulation) -----------------------------------------------
+jingjiang_monthly_2016_2024_final.csv   ! filetimeseries - monthly Q,W,D,E_rate,physical_ds data
+0.0000459           ! slope - valley slope for dynamic theta calculation
+1.65                ! delta_sg - relative sediment density (rho_s/rho - 1)
+0.00025             ! physical_ds - default physical grain size (m)
+4.0d-5              ! E_scale - scaling factor for E_rate to Ef (calibrated: 4e-7 × 97 to match observed 36.76m migration)
+0.5                 ! factor_Eb - point bar erodibility factor (Eb = Ef * factor_Eb)
+0.1                 ! factor_Eo - oxbow lake erodibility factor (Eo = Ef * factor_Eo)
+1.0d-6              ! kinematic_viscosity - water kinematic viscosity (m^2/s)

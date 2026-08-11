@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script before a executable
+#  is created; find more info on how to figure out what files they are
+#  and add them here.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nosetests/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+venv/
+.venv/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Executables
+src/mcmm/mcmm.exe
+src/mcmm/mcmm
+src/mcmm/temp/
+src/mcmm/output/
+
+# Temp folders
+src/mcmm/runs/
+outputs/
+data/graph/
+data/processed/forcing_q_d50_scenarios_*.csv
+data/processed/q_qs_shashi_1991_2024_clean.csv
+data/processed/forcing_q_qs_historical_1991_2024.csv
+data/processed/d50_shashi_2009_2030_m.csv
+data/processed/qc_missing_*.csv
