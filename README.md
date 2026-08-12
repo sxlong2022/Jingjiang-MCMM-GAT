@@ -132,5 +132,22 @@ python src/mcmm/run_forecast_rollout.py \
 ---
 
 ## 4. Citation and Credits
-*   **MCMM Kinematics Core**: Derived from the original research by Bogoni, M., Putti, M., and Lanzoni, S. (2017), *Modeling meander morphodynamics over self-formed heterogeneous floodplains*, Water Resources Research.
+
+If you use this codebase, models, or datasets in your research, please cite:
+
+> **Song, X.**, et al. (2026). Decoupling Geomorphic Potential and Anthropogenic Constraints in Hybrid Wetted-Channel Geometry Forecasting. *Environmental Modelling & Software* (Under Review).
+
+### BibTeX
+```bibtex
+@article{Song2026JingjiangMCMMGAT,
+  author  = {Song, Xiaolong and others},
+  title   = {Decoupling Geomorphic Potential and Anthropogenic Constraints in Hybrid Wetted-Channel Geometry Forecasting},
+  journal = {Environmental Modelling \& Software},
+  year    = {2026},
+  note    = {Under Review}
+}
+```
+
+### Prior Model Credits
+*   **MCMM Kinematics Core**: Derived from the original numerical model by Bogoni, M., Putti, M., and Lanzoni, S. (2017), *Modeling meander morphodynamics over self-formed heterogeneous floodplains*, Water Resources Research, 53, 5137–5157. https://doi.org/10.1002/2017WR020726
 *   **Jingjiang Reach Application**: Reframed and coupled under the new hybrid GAT-SSM architecture for stage-conditioned wetted-channel geometry forecasting.
