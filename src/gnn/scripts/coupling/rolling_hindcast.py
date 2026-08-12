@@ -620,8 +620,19 @@ def _load_model_from_cv_dir(model_dir: Path, fold: int, allow_negative_override:
     heads = int(cfg.get("heads", 4))
     dropout = float(cfg.get("dropout", 0.3))
 
-    num_static = int(cfg.get("num_static", 14))
-    num_hydro = int(cfg.get("num_hydro", 7))
+    if "num_static" in cfg:
+        num_static = int(cfg["num_static"])
+    elif "model_state_dict" in ckpt and "film_gamma.weight" in ckpt["model_state_dict"]:
+        num_static = ckpt["model_state_dict"]["film_gamma.weight"].shape[0]
+    else:
+        num_static = 14
+
+    if "num_hydro" in cfg:
+        num_hydro = int(cfg["num_hydro"])
+    elif "model_state_dict" in ckpt and "film_gamma.weight" in ckpt["model_state_dict"]:
+        num_hydro = ckpt["model_state_dict"]["film_gamma.weight"].shape[1]
+    else:
+        num_hydro = 7
 
     extra_node_dim = int(cfg.get("extra_node_dim", (1 if use_mcmm else 0) + (1 if use_depth_mask else 0)))
     in_channels = int(cfg.get("in_channels", (num_static + num_hydro + extra_node_dim)))
