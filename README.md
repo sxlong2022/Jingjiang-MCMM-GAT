@@ -135,12 +135,12 @@ python src/mcmm/run_forecast_rollout.py \
 
 If you use this codebase, models, or datasets in your research, please cite:
 
-> **Song, X.**, et al. (2026). Decoupling Geomorphic Potential and Anthropogenic Constraints in Hybrid Wetted-Channel Geometry Forecasting. *Environmental Modelling & Software* (Under Review).
+> **Song, X.**, Huang, H., Zhang, L., Xu, H., & Bai, Y. (2026). Decoupling Geomorphic Potential and Anthropogenic Constraints in Hybrid Wetted-Channel Geometry Forecasting. *Environmental Modelling & Software* (Under Review).
 
 ### BibTeX
 ```bibtex
 @article{Song2026JingjiangMCMMGAT,
-  author  = {Song, Xiaolong and others},
+  author  = {Song, Xiaolong and Huang, Hai and Zhang, Lei and Xu, Haijue and Bai, Yuchuan},
   title   = {Decoupling Geomorphic Potential and Anthropogenic Constraints in Hybrid Wetted-Channel Geometry Forecasting},
   journal = {Environmental Modelling \& Software},
   year    = {2026},
