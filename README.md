@@ -66,7 +66,7 @@ We recommend using Conda to manage Python dependencies. Set up the environment u
 
 ```bash
 # Create and activate environment
-conda create -n riverpiv python=3.10 -y
+conda create -n riverpiv python=3.8 -y
 conda activate riverpiv
 
 # Install dependencies (ensure PyTorch and PyTorch Geometric match your CUDA capabilities)
@@ -89,7 +89,11 @@ A Fortran compiler (such as `gfortran`) is required to compile the meander kinem
     ```
 This will compile the Fortran files under `fortran/` and output a binary executable (`mcmm.exe` or `mcmm`) in the `src/mcmm/` directory.
 
----
+### Hardware Requirements
+
+*   **Minimum**: General-purpose x86-64 PC with 8 GB RAM.
+*   **Recommended**: NVIDIA GPU (Pascal architecture or newer) with ≥4 GB VRAM for accelerated GNN training and inference. CPU-only execution is supported but significantly slower for graph-based learning tasks.
+*   **Storage**: ~500 MB for repository, data, and compiled binaries; additional space required for generated forcing scenarios and model outputs.
 
 ## 3. Core Workflows
 
