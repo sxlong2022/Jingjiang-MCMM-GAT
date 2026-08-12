@@ -20,14 +20,13 @@ Jingjiang-MCMM-GAT/
 │   │   ├── jingjiang_monthly_2016_2024_final.csv # Historical observations (Q, W, D, E_rate)
 │   │   ├── shashi_monthly_q_qs.csv               # Shashi station monthly discharge & sediment load
 │   │   └── monthly_centerlines/                  # 108 monthly satellite centerline .npy files
-│   ├── processed/               # Reach static features & forcing outputs
-│   │   ├── engineering_features.csv             # 1000-node binary protection database (is_protected)
-│   │   ├── geometric_features.csv               # 1000-node reach geometry features
-│   │   ├── landuse_features.csv, soil_features.csv, vegetation_features.csv
-│   │   ├── scenario_effects_effect_sizes.csv    # Pre-computed multi-scenario Cohen's d values
-│   │   └── [forcing_q_d50_scenarios_*.csv]      # (Generated at runtime by Step 1)
-│   └── graph/                   # (Generated at runtime by Step 2)
-│       └── cv_monthly/                          # Compiled PyTorch Geometric graph datasets (.pt)
+│   └── processed/               # Reach static features & forcing outputs
+│       ├── engineering_features.csv             # 1000-node binary protection database (is_protected)
+│       ├── geometric_features.csv               # 1000-node reach geometry features
+│       ├── landuse_features.csv                 # 1000-node floodplain land use features
+│       ├── soil_features.csv                    # 1000-node soil composition features
+│       ├── vegetation_features.csv              # 1000-node riparian vegetation features
+│       └── scenario_effects_effect_sizes.csv    # Pre-computed multi-scenario Cohen's d values
 ├── src/
 │   ├── forcing/
 │   │   ├── build_forcing_scenarios.py           # Vogel-style bootstrap generator for Q/Qs/d50
@@ -54,8 +53,6 @@ Jingjiang-MCMM-GAT/
 │           │   └── build_graph.py               # Graph dataset builder (merges engineering_features)
 │           └── coupling/
 │               └── rolling_hindcast.py          # Combined GNN-MCMM rolling backtest and forecasting
-├── outputs/                     # (Generated at runtime by Step 3)
-│   └── cv_monthly_results/                      # Model checkpoints (fold1_model.pt) & evaluation metrics
 └── notebooks/
     └── demo.ipynb                   # End-to-end interactive demonstration notebook
 ```
